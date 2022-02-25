@@ -1,0 +1,703 @@
+body{
+    background-color: #e6e6e6;
+    font-family: 'Source Sans Pro', sans-serif;
+    transition: all 1s ease-in;
+}
+
+
+/* ===============================
+   HTML DEFAULTS
+   =============================*/
+
+html {
+    font-size: 1em;
+    line-height: 1.4;
+}
+
+body {
+    background-color: azure;
+    font-family: 'Source Sans Pro', sans-serif;
+    animation: all 2s ease;
+    color: #444444;
+    font-size: 12px;
+    
+}
+
+::-moz-selection {
+    background: #ffd600;
+    color: #000000;
+    text-shadow: none;
+}
+
+::selection {
+    background: #ffd600;
+    color: #000000;
+    text-shadow: none;
+}
+
+::-webkit-scrollbar {
+    width: 0.5em;
+    height: 0.5em;
+}
+
+.main-container-block {
+    margin: 0 auto;
+    padding: 55px 3% 6%;
+}
+
+input {
+    transition: all 1s ease-in-out;
+}
+
+input[data-value="txt"] {
+    display: block !important;
+    padding: 6px 5px 2px 6px !important;
+    font-size: 12px !important;
+    line-height: 1.42857143 !important;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: none;
+    border-bottom: 2px solid #da4dd6;
+    border-radius: 1px;
+    outline: none !important;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 2px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+select[data-value="txt"]{
+    display: block !important;
+    padding: 6px 5px 2px 6px !important;
+    font-size: 12px !important;
+    line-height: 1.42857143 !important;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: none;
+    border-bottom: 2px solid #da4dd6;
+    border-radius: 1px;
+    outline: none !important;
+    -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
+    box-shadow: inset 0 2px 1px rgb(0 0 0 / 8%);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+button {
+    outline: none;
+    border: none;
+    position: relative;
+    text-align: center;
+    border-radius: 2px;
+    margin-left: 5px !important;
+    margin-right: 5px !important;
+}
+
+button:hover {
+    background-color: #c5c5c5;
+}
+
+button a {
+    color: #FFF;
+}
+
+*[disabled] {
+    background-color: #e8e8e8 !important;
+    border: 1px solid #e8e8e8 !important;
+    cursor: default !important;
+    pointer-events: none !important;
+    color: #8e8e8e !important;
+    box-shadow: none !important;
+}
+
+input:disabled {
+    background-color: #eaeaea !important;
+    border-bottom: none;
+    cursor: default !important;
+    pointer-events: none !important;
+    content: '' !important;
+}
+
+input:disabled div,
+input:disabled span {
+    background-color: #eaeaea !important;
+    color: #eaeaea !important;
+    cursor: default !important;
+    pointer-events: none !important;
+}
+
+/*===============================
+   PERSONALIZADOS
+===============================*/
+
+.btn {
+    cursor: pointer;
+    background-color: #e6e6e6;
+    color: #da4dd6;
+    padding: 10px;
+    display: inline-flex;
+    align-items: baseline;
+    font-size: 15px;
+    text-transform: uppercase;
+    font-weight: bold;
+    box-shadow: 1px 1px 2px #c7c7c7;
+    transform: translate(0px, 0px);
+    transition: all 0.1s ease-in;
+    border-bottom: none !important;
+}
+
+.btn i {
+    font-size: 16px;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.btn:hover {
+    background-color: #d0d0d0;
+}
+
+.btn:hover i {
+    background-color: #d0d0d0;
+    animation-name: amp;
+    animation-duration: .8s;
+    -webkit-transform-origin: center;
+    transform-origin: center;
+}
+
+.btn:active {
+    background-color: #c1c1c1;
+    transform: translate(2px, 2px);
+    color: #567584;
+    box-shadow: inset 1px 1px 4px #797979;
+}
+
+.objs-ins button {
+    /* text-align: center; */
+    margin: 0 auto;
+}
+
+.objs-ins input[data-value*="default"],
+.objs-ins select,
+.objs-ins input,
+.objs-ins md-autocomplete,
+td input[data-value*="default"] {
+    width: 90% !important;
+    margin: 0 auto;
+    background-color: white;
+    text-align: center;
+    text-align-last: center;
+}
+
+/*===============================
+   LOGIN
+===============================*/
+
+.bkg-login{
+    background-image: linear-gradient(120deg, #f6d365 0%, #eb653e  100%); 
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.form {
+    opacity: 0;
+    width: 300px;
+    padding: 25px;
+    border-radius: 5px;
+    box-shadow: 0 1px 1px #ccc;
+    letter-spacing: 1px;
+    cursor: pointer;
+    background-color: #FFF;
+    top: 0;
+    margin: 0 auto;
+    -webkit-box-shadow: -5px 6px 4px -2px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: -5px 6px 4px -2px rgba(0, 0, 0, 0.15);
+    box-shadow: -5px 6px 4px -2px rgba(0, 0, 0, 0.15);
+}
+
+.isotipo {
+    background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='utf-8'%3F%3E%3Csvg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 499 266' style='enable-background:new 0 0 499 266;' xml:space='preserve'%3E%3Cstyle type='text/css'%3E .st0%7Bfill:none;%7D .st1%7Bfill:%2377DD77;%7D .st2%7Bfill:%23DA70D6;%7D .st3%7Bfill:%2321AA21;%7D .st4%7Bfill:%23DA4DD6;%7D%0A%3C/style%3E%3Cg%3E%3Cg%3E%3Cg%3E%3Cpath class='st0' d='M251.35,46.64c-0.09,0.22-0.05,0.31,0.06,0.35C251.35,46.84,251.32,46.7,251.35,46.64z'/%3E%3Cpath class='st0' d='M289.13,96.8c1.4-0.43,2.89-1.05,4.37-1.45c-0.63-0.28-1.22-0.58-1.63-0.72c-2.66-0.95-5.32-1.9-7.98-2.85 c-3.71-1.32-7.41-2.65-11.12-3.97c1.31,4.27,2.62,8.54,3.93,12.82C280.84,99.34,284.99,98.07,289.13,96.8z'/%3E%3Cpath class='st0' d='M262.9,84.27c-7.02-2.51-14.03-5.01-21.05-7.52c-4.62,12.94-9.24,25.87-13.86,38.81 c3.81-1.17,7.61-2.34,11.42-3.51c9.75-2.99,19.51-5.99,29.26-8.98c-0.01-0.02-0.01-0.05-0.02-0.07 C266.74,96.76,264.82,90.52,262.9,84.27z'/%3E%3Cpath class='st0' d='M253.39,53.29c-0.43-1.4-1.05-2.89-1.45-4.37c-0.28,0.63-0.58,1.22-0.72,1.63c-0.95,2.66-1.9,5.32-2.85,7.98 c-1.23,3.45-2.46,6.89-3.69,10.34c5.06,1.81,10.11,3.61,15.17,5.42C257.69,67.29,255.54,60.29,253.39,53.29z'/%3E%3Cpath class='st0' d='M295.78,94.76c-0.22-0.09-0.31-0.05-0.35,0.06C295.58,94.76,295.71,94.73,295.78,94.76z'/%3E%3Cpath class='st1' d='M281.27,144.1c1.58,5.15,9.69,2.95,8.1-2.23c-3.4-11.08-6.8-22.15-10.2-33.23 c-2.68,0.82-5.35,1.64-8.03,2.46C274.51,122.1,277.89,133.1,281.27,144.1z'/%3E%3Cpath class='st2' d='M198.32,124.68c-5.15,1.58-2.95,9.69,2.23,8.1c4.64-1.43,9.29-2.85,13.93-4.28 c1.17-3.29,2.35-6.58,3.52-9.86C211.44,120.65,204.88,122.66,198.32,124.68z'/%3E%3Cpath class='st3' d='M233.96,73.94c-3.02,8.44-6.03,16.89-9.05,25.33c-2.3,6.45-4.61,12.91-6.91,19.36 c-1.17,3.29-2.35,6.58-3.52,9.86c-1.59,4.46-3.18,8.91-4.78,13.37c-1.82,5.1,6.29,7.29,8.1,2.23c2.22-6.22,4.44-12.45,6.67-18.67 c1.17-3.29,2.35-6.58,3.52-9.86c4.62-12.94,9.24-25.87,13.86-38.81C239.22,75.82,236.59,74.88,233.96,73.94z'/%3E%3Cpath class='st4' d='M259.83,74.28c-5.06-1.81-10.11-3.61-15.17-5.42c-0.51-0.18-1.02-0.36-1.52-0.54 c-2.12-0.76-4.24-1.52-6.36-2.27c-12.08-4.31-24.15-8.63-36.23-12.94c-5.1-1.82-7.29,6.29-2.23,8.1 c11.88,4.24,23.76,8.49,35.64,12.73c2.63,0.94,5.26,1.88,7.89,2.82c7.02,2.51,14.03,5.01,21.05,7.52 C261.88,80.94,260.86,77.61,259.83,74.28z'/%3E%3C/g%3E%3Cg%3E%3Cpath class='st1' d='M272.76,87.8c-1.02-3.33-2.04-6.66-3.07-9.99c-2.66-8.67-5.32-17.35-7.99-26.02 c-1.33-4.34-2.18-10.64-6.95-12.46c-0.99-0.38-1.95-0.53-2.87-0.52c0,3.36,0,6.71,0,10.07c0.4,1.47,1.07,3.01,1.5,4.41 c2.15,7,4.3,14,6.45,21c1.02,3.33,2.04,6.66,3.07,9.99c1.92,6.24,3.83,12.49,5.75,18.73c0.01,0.02,0.01,0.05,0.02,0.07 c2.68-0.82,5.35-1.64,8.03-2.46C275.39,96.34,274.08,92.07,272.76,87.8z'/%3E%3Cpath class='st3' d='M244.44,44.6c-0.56,1.47-1.06,2.97-1.59,4.46c-2.02,5.67-4.05,11.33-6.07,17c2.12,0.76,4.24,1.52,6.36,2.27 c0.51,0.18,1.02,0.36,1.52,0.54c1.23-3.45,2.46-6.89,3.69-10.34c0.95-2.66,1.9-5.32,2.85-7.98c0.14-0.41,0.39-1.05,0.68-1.68 c0-3.36,0-6.71,0-10.07C248.52,38.84,245.72,41.24,244.44,44.6z'/%3E%3C/g%3E%3Cg%3E%3Cpath class='st4' d='M297.82,87.85c-1.47-0.56-2.97-1.06-4.46-1.59c-7.89-2.82-15.78-5.63-23.66-8.45 c1.02,3.33,2.04,6.66,3.07,9.99c3.71,1.32,7.41,2.65,11.12,3.97c2.66,0.95,5.32,1.9,7.98,2.85c0.4,0.14,0.98,0.43,1.6,0.71 l10.14-0.2C303.49,91.84,301.12,89.11,297.82,87.85z'/%3E%3Cpath class='st2' d='M293.46,95.33c0.01,0,0.02,0.01,0.03,0.01c-1.47,0.4-2.96,1.02-4.37,1.45c-4.14,1.27-8.29,2.54-12.43,3.82 c-2.68,0.82-5.35,1.64-8.03,2.46c-9.75,2.99-19.51,5.99-29.26,8.98c-3.81,1.17-7.61,2.34-11.42,3.51 c-1.17,3.29-2.35,6.58-3.52,9.86c15.56-4.78,31.11-9.55,46.67-14.33c2.68-0.82,5.35-1.64,8.03-2.46 c3.82-1.17,7.64-2.35,11.46-3.52c4.34-1.33,10.64-2.18,12.46-6.95c0.4-1.05,0.55-2.07,0.52-3.04L293.46,95.33z'/%3E%3C/g%3E%3C/g%3E%3Cg%3E%3Cpath class='st4' d='M79.94,193.14c-3.22-1.97-7.75-3.75-13.59-5.36c-3.7-1.01-6.53-2.03-8.49-3.04 c-1.97-1.01-2.95-2.38-2.95-4.11c0-1.43,0.58-2.65,1.74-3.66c0.75-0.65,1.76-1.09,3.04-1.32l3.73,0.18l19.83,5.44l1.42-4.44 l2.07-6.47l-10.1-7.42c-1.31-0.24-3.05-0.43-5.23-0.58c-2.18-0.15-4.22-0.22-6.12-0.22c-6.32,0-11.5,0.86-15.55,2.59 c-4.05,1.73-7.03,4.08-8.94,7.06c-0.6,0.93-1.09,1.9-1.5,2.9c-0.9,2.2-1.36,4.57-1.36,7.11c0,3.57,0.73,6.51,2.19,8.8 c1.46,2.3,3.58,4.2,6.35,5.72c2.77,1.52,6.12,2.91,10.06,4.16c5.06,1.55,8.77,2.85,11.13,3.89c2.35,1.04,3.53,2.34,3.53,3.89 c0,1.43-0.52,2.43-1.56,2.99c-1.04,0.57-2.64,0.85-4.78,0.85c-5.3,0-10.13-0.7-14.48-2.1c-4.35-1.4-7.95-2.91-10.82-4.51v16 c0.2,0.15,0.43,0.31,0.68,0.47c0.99,0.64,2.34,1.32,4.06,2.03c2.15,0.89,4.68,1.65,7.6,2.28c2.92,0.63,6.02,0.94,9.3,0.94 c9.18,0,16.06-1.74,20.65-5.23c1.17-0.89,2.19-1.85,3.06-2.89c2.54-3.02,3.82-6.66,3.82-10.92c0-3.1-0.66-5.88-1.97-8.36 C85.42,197.33,83.16,195.11,79.94,193.14z'/%3E%3Cpolygon class='st4' points='97.64,168.38 98.53,177.32 98.53,177.47 98.53,218.2 98.53,226.3 114.71,226.3 114.71,217.16 114.71,178.23 114.71,163.02 98.53,163.02 '/%3E%3Cpolygon class='st4' points='164.85,180.59 164.85,194.84 163.96,194.84 159.67,187.42 154.23,180.09 141.61,163.11 127.22,163.11 125.44,168.47 127.22,177.41 127.22,178.82 127.22,216.36 127.22,226.3 144.39,226.3 144.01,215.28 143.49,200.2 143.49,194.84 144.39,194.84 158.31,214.36 166.82,226.3 180.85,226.3 180.85,212.91 180.85,181.35 180.85,177.41 181.75,168.47 181.75,163.11 164.85,163.11 '/%3E%3Cpath class='st4' d='M248.07,203.15l-6.81-18.96l-7.58-21.08h-23.15l-6.59,19.33l-5.03,14.73l-6.61,2.68v11.35l-0.28,1L188,226.3 h16.8l3.84-14.3h26.01l4.47,14.3h15.82v-10.46l-4.03-7.43L248.07,203.15z M221.08,177.77h1.88l1.88,5.65l4.92,14.82h-15.2 l4.81-15.08L221.08,177.77z'/%3E%3Cpath class='st4' d='M303.35,165.03c-3.49-1.34-7.4-2.01-11.75-2.01H263l-1.79,5.36l1.79,9.03v7.81v22.42v18.66h16.09l0.89-5.45 l-0.89-8.94v-4.65h9.83c5.01,0,9.46-0.68,13.36-2.06c0.09-0.03,0.18-0.07,0.28-0.11c3.77-1.38,6.73-3.65,8.89-6.82 c1.84-2.72,2.91-6.27,3.21-10.63c0.06-0.85,0.1-1.73,0.1-2.64c0-5.6-1.03-10-3.08-13.18 C309.61,168.63,306.84,166.37,303.35,165.03z M295.26,191.49c-1.85,1.16-4.32,1.74-7.42,1.74h-8.76l-0.41-7.28l-0.49-8.63h9.3 c2.09,0,3.92,0.18,5.5,0.54c1.58,0.36,2.82,1.09,3.71,2.19c0.89,1.1,1.34,2.76,1.34,4.96c0,0.67-0.05,1.28-0.13,1.85 C297.6,189.02,296.72,190.57,295.26,191.49z'/%3E%3Cpath class='st4' d='M372.49,199.8c-1.31-2.47-3.58-4.69-6.79-6.66c-1.99-1.21-4.48-2.36-7.47-3.44 c-1.85-0.67-3.89-1.31-6.12-1.92c-3.7-1.01-6.53-2.03-8.49-3.04c-1.97-1.01-2.95-2.38-2.95-4.11c0-1.43,0.58-2.65,1.74-3.66 c1.16-1.01,2.96-1.52,5.41-1.52l21.18,5.81l3.49-10.9l-10.1-7.42c-1.31-0.24-3.05-0.43-5.23-0.58c-2.18-0.15-4.22-0.22-6.12-0.22 c-6.32,0-11.5,0.86-15.55,2.59c-4.05,1.73-7.03,4.08-8.94,7.06c-1.91,2.98-2.86,6.32-2.86,10.01c0,2.4,0.34,4.51,1,6.33 c0.32,0.89,0.71,1.72,1.19,2.47c1.46,2.3,3.58,4.2,6.35,5.72c2.77,1.52,6.12,2.91,10.06,4.16c2.02,0.62,3.81,1.19,5.4,1.73 c2.39,0.81,4.31,1.53,5.73,2.16c2.35,1.04,3.53,2.34,3.53,3.89c0,1.43-0.52,2.43-1.56,2.99c-1.04,0.57-2.64,0.85-4.78,0.85 c-5.3,0-10.13-0.7-14.48-2.1c-4.35-1.4-7.95-2.91-10.82-4.51v16c1.01,0.78,2.59,1.61,4.74,2.5c2.15,0.89,4.68,1.65,7.6,2.28 c2.92,0.63,6.02,0.94,9.3,0.94c9.18,0,16.06-1.74,20.65-5.23c4.59-3.49,6.88-8.09,6.88-13.81c0-2.77-0.53-5.3-1.58-7.57 C372.75,200.32,372.63,200.06,372.49,199.8z'/%3E%3Cpolygon class='st4' points='383.4,168.38 384.29,177.32 384.29,190.93 384.29,199.85 384.29,226.3 400.47,226.3 400.47,198.81 400.47,191.69 400.47,163.02 384.29,163.02 '/%3E%3Cpath class='st4' d='M459.1,199.8c-0.85-1.61-2.12-3.11-3.78-4.51c-0.44-0.37-0.91-0.73-1.4-1.08c-0.51-0.36-1.04-0.72-1.6-1.07 c-3.22-1.97-7.75-3.75-13.59-5.36c-3.7-1.01-6.53-2.03-8.49-3.04c-1.97-1.01-2.95-2.38-2.95-4.11c0-1.43,0.58-2.65,1.74-3.66 c1.16-1.01,2.96-1.52,5.41-1.52l21.18,5.81l3.49-10.9l-10.1-7.42c-1.31-0.24-3.05-0.43-5.23-0.58c-2.18-0.15-4.22-0.22-6.12-0.22 c-6.32,0-11.5,0.86-15.55,2.59c-4.05,1.73-7.03,4.08-8.94,7.06c-1.91,2.98-2.86,6.32-2.86,10.01c0,3.57,0.73,6.51,2.19,8.8 c0.38,0.6,0.81,1.18,1.29,1.73c1.33,1.54,3.02,2.87,5.06,3.99c0.73,0.4,1.5,0.79,2.31,1.17c2.27,1.07,4.85,2.06,7.74,2.99 c5.06,1.55,8.77,2.85,11.13,3.89c2.35,1.04,3.53,2.34,3.53,3.89c0,1.43-0.52,2.43-1.56,2.99c-1.04,0.57-2.64,0.85-4.78,0.85 c-5.3,0-10.13-0.7-14.48-2.1c-4.35-1.4-7.95-2.91-10.82-4.51v16c1.01,0.78,2.59,1.61,4.74,2.5c2.15,0.89,4.68,1.65,7.6,2.28 c2.92,0.63,6.02,0.94,9.3,0.94c9.18,0,16.06-1.74,20.65-5.23c4.59-3.49,6.88-8.09,6.88-13.81 C461.07,205.06,460.41,202.27,459.1,199.8z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E%0A");
+    background-repeat: no-repeat;
+    width: 220px;
+    height: 120px;
+}
+
+.isotipo-bnc {
+    background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='utf-8'%3F%3E%3Csvg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 522 104' style='enable-background:new 0 0 522 104;' xml:space='preserve'%3E%3Cstyle type='text/css'%3E .st0%7Bfill:none;%7D .st1%7Bfill:%2377DD77;%7D .st2%7Bfill:%23DA70D6;%7D .st3%7Bfill:%2321AA21;%7D .st4%7Bfill:%23DA4DD6;%7D .st5%7Bfill:%23FFFFFF;%7D%0A%3C/style%3E%3Cg%3E%3Cpath class='st5' d='M77.61,48.51c-0.86-0.33-1.73-0.62-2.59-0.93c-4.59-1.64-9.17-3.28-13.76-4.91 c-1.55-5.04-3.1-10.08-4.64-15.12c-0.77-2.52-1.27-6.18-4.04-7.24c-0.57-0.22-1.13-0.31-1.67-0.3c-1.95,0.02-3.58,1.42-4.33,3.37 c-0.33,0.86-0.62,1.73-0.93,2.59c-1.18,3.29-2.35,6.59-3.53,9.88c-7.02-2.51-14.04-5.01-21.06-7.52c-2.96-1.06-4.24,3.66-1.3,4.71 c6.91,2.47,13.81,4.93,20.72,7.4c-1.75,4.91-3.51,9.82-5.26,14.73c-1.34,3.75-2.68,7.5-4.02,11.25c-3.81,1.17-7.63,2.34-11.44,3.51 c-2.99,0.92-1.72,5.63,1.3,4.71c2.7-0.83,5.4-1.66,8.1-2.49c-0.93,2.59-1.85,5.18-2.78,7.77c-1.06,2.96,3.66,4.24,4.71,1.3 c1.29-3.62,2.58-7.23,3.88-10.85c9.04-2.78,18.09-5.55,27.13-8.33c1.96,6.39,3.93,12.79,5.89,19.18c0.92,2.99,5.63,1.72,4.71-1.3 c-1.98-6.44-3.95-12.88-5.93-19.31c2.22-0.68,4.44-1.36,6.66-2.05c2.52-0.77,6.18-1.27,7.24-4.04c0.23-0.61,0.32-1.2,0.3-1.77 C80.91,50.82,79.53,49.24,77.61,48.51z M48.86,31.46c0.55-1.55,1.1-3.09,1.66-4.64c0.08-0.24,0.23-0.61,0.39-0.97 c0.23,0.86,0.62,1.75,0.87,2.57c1.25,4.07,2.5,8.14,3.75,12.2c-2.94-1.05-5.88-2.1-8.82-3.15C47.43,35.47,48.15,33.47,48.86,31.46z M43.66,62.58c-2.21,0.68-4.43,1.36-6.64,2.04c2.69-7.52,5.37-15.04,8.06-22.56c4.08,1.46,8.16,2.91,12.24,4.37 c1.11,3.63,2.23,7.26,3.34,10.89c0,0.01,0.01,0.03,0.01,0.04C55,59.1,49.33,60.84,43.66,62.58z M72.56,53.71 c-2.41,0.74-4.82,1.48-7.23,2.22c-0.76-2.48-1.52-4.97-2.29-7.45c2.15,0.77,4.31,1.54,6.46,2.31c1.55,0.55,3.09,1.1,4.64,1.66 c0.23,0.08,0.57,0.25,0.93,0.41c0.01,0,0.01,0.01,0.02,0.01C74.24,53.09,73.38,53.46,72.56,53.71z'/%3E%3Cg%3E%3Cpath class='st5' d='M144.61,51.9c-3.03-1.85-7.3-3.54-12.81-5.06c-3.48-0.95-6.15-1.91-8.01-2.87c-1.85-0.95-2.78-2.25-2.78-3.88 c0-1.35,0.55-2.5,1.64-3.45c0.7-0.61,1.66-1.03,2.86-1.25l3.51,0.17l18.69,5.13l1.34-4.18l1.95-6.1l-9.52-6.99 c-1.24-0.22-2.88-0.41-4.93-0.55c-2.05-0.14-3.98-0.21-5.77-0.21c-5.96,0-10.84,0.81-14.66,2.44c-3.82,1.63-6.63,3.85-8.43,6.66 c-0.56,0.88-1.03,1.79-1.41,2.73c-0.85,2.08-1.29,4.31-1.29,6.7c0,3.37,0.69,6.14,2.06,8.3c1.38,2.16,3.37,3.96,5.98,5.39 c2.61,1.43,5.77,2.74,9.48,3.92c4.77,1.46,8.27,2.68,10.49,3.67c2.22,0.98,3.33,2.21,3.33,3.67c0,1.35-0.49,2.29-1.48,2.82 c-0.98,0.53-2.49,0.8-4.51,0.8c-5,0-9.55-0.66-13.65-1.98c-4.1-1.32-7.5-2.74-10.2-4.26v15.08c0.19,0.15,0.41,0.29,0.64,0.44 c0.94,0.6,2.21,1.24,3.83,1.92c2.02,0.84,4.41,1.56,7.16,2.15c2.75,0.59,5.67,0.88,8.76,0.88c8.65,0,15.14-1.64,19.47-4.93 c1.1-0.84,2.07-1.75,2.89-2.73c2.4-2.85,3.6-6.28,3.6-10.29c0-2.92-0.62-5.55-1.85-7.88C149.78,55.84,147.64,53.75,144.61,51.9z' /%3E%3Cpolygon class='st5' points='161.3,28.55 162.14,36.98 162.14,37.12 162.14,75.52 162.14,83.16 177.39,83.16 177.39,74.54 177.39,37.84 177.39,23.5 162.14,23.5 '/%3E%3Cpolygon class='st5' points='224.66,40.07 224.66,53.5 223.82,53.5 219.78,46.5 214.65,39.6 202.75,23.58 189.19,23.58 187.5,28.64 189.19,37.07 189.19,38.4 189.19,73.78 189.19,83.16 205.37,83.16 205.01,72.77 204.52,58.55 204.52,53.5 205.37,53.5 218.49,71.9 226.52,83.16 239.75,83.16 239.75,70.54 239.75,40.78 239.75,37.07 240.59,28.64 240.59,23.58 224.66,23.58 '/%3E%3Cpath class='st5' d='M303.12,61.33l-6.42-17.87l-7.14-19.88h-21.83l-6.22,18.22l-4.74,13.89l-6.24,2.53v10.7l-0.27,0.94 l-3.78,13.3h15.84l3.62-13.48h24.52l4.21,13.48h14.92V73.3l-3.8-7L303.12,61.33z M277.67,37.4h1.77l1.77,5.33l4.64,13.97h-14.33 l4.53-14.21L277.67,37.4z'/%3E%3Cpath class='st5' d='M355.24,25.39c-3.29-1.26-6.98-1.9-11.08-1.9h-26.97l-1.69,5.06l1.69,8.51v7.36v21.14v17.59h15.17l0.84-5.14 l-0.84-8.43v-4.38h9.27c4.72,0,8.92-0.64,12.6-1.94c0.09-0.03,0.17-0.07,0.26-0.1c3.55-1.3,6.35-3.44,8.38-6.43 c1.74-2.56,2.74-5.91,3.02-10.02c0.06-0.8,0.09-1.63,0.09-2.49c0-5.28-0.97-9.42-2.91-12.43 C361.14,28.79,358.53,26.66,355.24,25.39z M347.61,50.34c-1.74,1.1-4.07,1.64-6.99,1.64h-8.26l-0.39-6.86l-0.46-8.14h8.76 c1.97,0,3.69,0.17,5.18,0.51c1.49,0.34,2.65,1.03,3.5,2.06c0.84,1.04,1.26,2.6,1.26,4.68c0,0.63-0.05,1.2-0.12,1.75 C349.81,48.01,348.99,49.47,347.61,50.34z'/%3E%3Cpath class='st5' d='M420.42,58.17c-1.24-2.33-3.37-4.42-6.4-6.28c-1.87-1.15-4.22-2.23-7.04-3.24c-1.74-0.63-3.67-1.23-5.77-1.81 c-3.48-0.95-6.15-1.91-8.01-2.87c-1.85-0.95-2.78-2.25-2.78-3.88c0-1.35,0.55-2.5,1.64-3.45c1.1-0.95,2.79-1.43,5.1-1.43 l19.97,5.48l3.29-10.28l-9.52-6.99c-1.24-0.22-2.88-0.41-4.93-0.55c-2.05-0.14-3.98-0.21-5.77-0.21c-5.96,0-10.84,0.81-14.66,2.44 c-3.82,1.63-6.63,3.85-8.43,6.66c-1.8,2.81-2.7,5.96-2.7,9.44c0,2.26,0.32,4.25,0.94,5.97c0.3,0.84,0.67,1.62,1.12,2.33 c1.38,2.16,3.37,3.96,5.98,5.39c2.61,1.43,5.77,2.74,9.48,3.92c1.9,0.58,3.6,1.13,5.09,1.63c2.26,0.76,4.06,1.44,5.4,2.03 c2.22,0.98,3.33,2.21,3.33,3.67c0,1.35-0.49,2.29-1.48,2.82c-0.98,0.53-2.49,0.8-4.51,0.8c-5,0-9.55-0.66-13.65-1.98 c-4.1-1.32-7.5-2.74-10.2-4.26v15.08c0.95,0.73,2.44,1.52,4.47,2.36c2.02,0.84,4.41,1.56,7.16,2.15c2.75,0.59,5.67,0.88,8.76,0.88 c8.65,0,15.14-1.64,19.47-4.93c4.33-3.29,6.49-7.63,6.49-13.02c0-2.62-0.5-5-1.49-7.14C420.67,58.67,420.55,58.42,420.42,58.17z' /%3E%3Cpolygon class='st5' points='430.7,28.55 431.54,36.98 431.54,49.81 431.54,58.22 431.54,83.16 446.8,83.16 446.8,57.24 446.8,50.53 446.8,23.5 431.54,23.5 '/%3E%3Cpath class='st5' d='M502.08,58.17c-0.81-1.52-2-2.93-3.57-4.25c-0.41-0.35-0.86-0.69-1.32-1.02c-0.48-0.34-0.98-0.68-1.51-1.01 c-3.03-1.85-7.3-3.54-12.81-5.06c-3.48-0.95-6.15-1.91-8.01-2.87c-1.85-0.95-2.78-2.25-2.78-3.88c0-1.35,0.55-2.5,1.64-3.45 c1.1-0.95,2.79-1.43,5.1-1.43l19.97,5.48l3.29-10.28l-9.52-6.99c-1.24-0.22-2.88-0.41-4.93-0.55c-2.05-0.14-3.98-0.21-5.77-0.21 c-5.96,0-10.84,0.81-14.66,2.44c-3.82,1.63-6.63,3.85-8.43,6.66c-1.8,2.81-2.7,5.96-2.7,9.44c0,3.37,0.69,6.14,2.06,8.3 c0.36,0.57,0.77,1.11,1.21,1.63c1.25,1.45,2.84,2.71,4.77,3.77c0.69,0.38,1.42,0.74,2.18,1.1c2.14,1.01,4.57,1.95,7.3,2.81 c4.77,1.46,8.27,2.68,10.49,3.67c2.22,0.98,3.33,2.21,3.33,3.67c0,1.35-0.49,2.29-1.48,2.82c-0.98,0.53-2.49,0.8-4.51,0.8 c-5,0-9.55-0.66-13.65-1.98c-4.1-1.32-7.5-2.74-10.2-4.26v15.08c0.95,0.73,2.44,1.52,4.47,2.36c2.02,0.84,4.41,1.56,7.16,2.15 c2.75,0.59,5.67,0.88,8.76,0.88c8.65,0,15.14-1.64,19.47-4.93c4.33-3.29,6.49-7.63,6.49-13.02 C503.93,63.13,503.31,60.51,502.08,58.17z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 40px;
+    margin-left: 20px;
+}
+
+.iso-form {
+    width: 120px;
+    height: 100px;
+    margin-bottom: 20px;
+    margin: 0 auto;
+}
+
+.iso-form-nuevo{
+    height: 120px;
+    margin-bottom: 40px;
+    margin: 0 auto;
+}
+
+.version{
+    opacity: 0.75; 
+    text-align: center; 
+    color: gray; 
+    font-size: 10px; 
+    margin-bottom: -18px;
+}
+/* ELEMENTS*/
+
+.objs-elems {
+    vertical-align: middle;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    padding: 2px 10px;
+    margin: 9px 0px;
+}
+
+.objs-elems div {
+    text-align: center;
+    /*display: block;*/
+    width: 100%;
+}
+
+.bord {
+    border-bottom: 2px solid #da4dd6;
+}
+
+.bord:hover {
+    border-bottom: 2px solid #810f7d;
+}
+
+.txt-center{
+    text-align: center;
+}
+
+
+.txt-center-100 {
+    width: 100%;
+    justify-content: center;
+}
+
+header{
+    width: 100%;
+    height: 50px;
+    background-image: linear-gradient(305deg, #ffc107 0%, #ffa700 100%);
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    flex-wrap: nowrap;
+    box-shadow: 1px 1px 3px 2px #bdbdbd;
+    z-index:100;
+}
+
+.task-form{
+
+}
+
+.container-main{
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-direction: row;
+    align-content: flex-start;
+    flex-wrap: nowrap;
+}
+
+.panel-izq{
+    width: 25%;
+    min-width: 280px;
+    top: 0;
+    left: 0;
+    background: #FAFBFC;
+    z-index: 10;
+    padding: 22px 13px;
+    box-shadow: inset -3px 0px 3px 0px #838383;
+    display: flex;
+    justify-content: flex-start;
+    align-content: flex-start;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    flex-direction: column;
+    max-width: 290px;
+    height: 100vh;
+}
+
+.btns-main{
+    display: grid;
+    font-size: 15px;
+}
+
+.btns-main button{
+    color: #42526e;
+    padding: 2%;
+    font-weight: 500;
+    cursor: pointer;
+    background: #fafbfc;
+    margin-bottom: 3px;
+    align-items: start;
+}
+
+.btns-main button:hover{
+    background: #e9e9e9;
+
+}
+
+.tit-main{
+    font-family: 'Rowdies', cursive;
+    padding: 3%;
+    font-size: 1rem;
+    margin-top: 0px;
+    margin-bottom: 35px;
+    color: #2196f3;
+    margin-left: 5px;
+
+}
+
+.resum-main{
+    font-size: 13px;
+    
+}
+
+.container{
+    width: 100%;
+    background-color: #f5f5f5;
+    display: flex;
+    flex-wrap: nowrap;
+    align-content: flex-start;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 2% 1.5%;
+    flex-direction: column;
+}
+
+.task-main{
+    width: 230px;
+    height: 160px;
+    background-color: white;
+    box-shadow: -2px 3px 4px #ccc;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    margin-right: 20px;
+    padding: 5px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.foot{
+    position: absolute;
+    bottom: 15px;
+    text-align: center;
+    align-self: center;
+    width: inherit;
+    color: #cbcbcb;
+}
+
+.btns-head{
+    margin-right: 25px;
+    font-size: 1.4em;
+    display: flex;
+    text-shadow: -1px 2px 2px rgb(255 255 255 / 50%), -1px 1px 0px #5a5a5a;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.bt-head{
+    margin: 0 10px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.bt-head:hover {
+    color: #FFF;
+}
+
+.btn-tasks{
+    cursor: pointer;
+    background-color: #e6e6e6;
+    color: #03a9f4;
+    padding: 4px;
+    display: inline-flex;
+    align-items: baseline;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: bold;
+    box-shadow: 1px 1px 2px #c7c7c7;
+    transform: translate(0px, 0px);
+    transition: all 0.1s ease-in;
+    border-bottom: none !important;
+}
+
+.btn-tasks:hover{
+    background-color: #1a6387;
+}
+
+
+.hover-circle{
+    opacity: 0;
+    width: 20px;
+    height: 20px;
+    background-color: #FFF;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.cont-p-links{
+    text-transform: uppercase;
+    font-size: 10px;
+    margin-bottom: 15px;
+}
+
+.cont-btns{
+    display: flex;
+    align-items: center;
+}
+
+.cont-tasks{
+    margin-top: 25px;
+    padding: 8px;
+    background-color: #edecec;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    width: 80vw;
+    height: 70vh;
+    overflow: auto;
+
+}
+
+.ppp{
+    margin-left: -17px;
+    color: #ccc;
+}
+
+.p2{
+   margin-left: 20px !important; 
+}
+
+.btn-ms{
+    text-align: left;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.btn-ms i{
+    margin-left: 5px;
+    margin-right: 15px;
+    font-size: 20px;
+}
+
+.modal{
+    z-index: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    position: fixed;
+
+}
+
+.bkg-modal{
+    background-color: black;
+    opacity: 0.7;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.main-modal{
+    width: 45vw;
+    height: 80vh;
+    background-color: #e9e9e9;
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    justify-content: flex-start;
+    border-radius: 3px;
+    box-shadow: 3px 3px 4px 0px #404040;
+    z-index: 510;
+}
+
+.header-modal{
+    display: flex;
+    justify-content: space-between;
+    height: 35px;
+    font-size: 15px;
+    text-align: center;
+    align-items: center;
+}
+
+.tit-modal{
+    text-transform: uppercase;
+    font-size: 15px;
+    width: 100%;
+}
+
+.close-modal{
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.cont-modal{
+    min-height: 70px;
+    max-height: 80vh;
+    padding: 2% 5%;
+    overflow: auto;
+}
+
+.btns-modal{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 60px;
+    width: 99%;
+}
+
+
+.cnt-m-all > div{
+    margin-bottom: 15px;
+    display: grid;
+}
+
+.cnt-m-ms > label{
+    font-size: 1.2em;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.cnt-m-ms > textarea{
+    padding: 5px;
+    border: 2px solid #9f9f9f;
+    border-radius: 4px;
+    font-size: 1.4em;
+    text-transform: capitalize;
+}
+
+.cnt-m-ms > label > span{
+    font-size: 15px;
+    color: red;
+}
+
+.cnt-m-ms > input{
+    padding: 5px;
+    border: 2px solid #9f9f9f;
+    border-radius: 4px;
+    font-size: 1.4em;
+    text-transform: capitalize;
+}
+
+.btn_add{
+    cursor: pointer;
+    color: #6a6a6a;
+    padding: 8px;
+    display: inline-flex;
+    align-items: baseline;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 600;
+    transform: translate(0px, 0px);
+    transition: all 0.1s ease-in;
+    border-bottom: none !important;
+    background: none;
+}
+
+.add_cls{
+    background-color: #009688;
+    color: white;
+}
+
+.u_line{
+    text-decoration-line: underline;
+}
+
+.clock-container {
+    margin-bottom: 10px;
+    background-color: #080808;
+    border-radius: 5px;
+    padding: 30px 10px 20px;
+    box-shadow: 1px 1px 5px rgb(255 255 255 / 15%), 0 15px 90px 30px rgb(0 0 0 / 25%);
+    display: flex;
+    width: 39.2vw;
+    justify-content: space-around;
+}
+.clock-container > div {
+    text-align: center;
+    position: relative;
+}
+
+.clock-container > div > input{
+    font-size: 35px;
+    text-align: center;
+    border: none;
+    background: none;
+    color: white;
+    margin-left: 15px;
+}
+
+.clock-col:not(:last-child):before, .clock-col:not(:last-child):after {
+    content: "";
+    background-color: rgba(255, 255, 255, .3);
+    height: 5px;
+    width: 5px;
+    border-radius: 50%;
+    display: block;
+    position: absolute;
+    right: -42px;
+}
+.clock-col:not(:last-child):before {
+    top: 35%;
+}
+.clock-col:not(:last-child):after {
+    top: 50%;
+}
+.clock-timer:before {
+    color: #fff;
+    font-size: 4.2rem;
+    text-transform: uppercase;
+}
+.clock-label {
+    color: rgba(255, 255, 255, .35);
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    margin-top: 10px;
+}
+
+.bt_plantillas{
+    font-size: 15px;
+    padding: 1% 2%;
+    background-color: #2196f3;
+    color: white;
+    box-shadow: 2px 2px 3px 0px #b5b5b5;
+    cursor: pointer;
+  }
