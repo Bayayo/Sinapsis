@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Modal from './modal';
 
-export default function Tab( { model, addTarea, editTarea, edicion, verHistorial, setNuevo, setEdita}) {
+export default function Tab( { model, addTarea, editTarea, eliminaTarea, finalizaTarea, edicion, verHistorial, setNuevo, setEdita}) {
     //NUEVA
     //const [m1, c1] = useState(false);
     //EDITA
@@ -35,7 +35,7 @@ export default function Tab( { model, addTarea, editTarea, edicion, verHistorial
                 
             </div>
 
-            <Modal c1={c1} c2={c2} model={model} addTarea={addTarea} editTarea={editTarea} edicion={edicion} />
+            <Modal c1={c1} c2={c2} model={model} addTarea={addTarea} editTarea={editTarea} eliminaTarea={eliminaTarea} finalizaTarea={finalizaTarea} edicion={edicion} />
 
             <div className="foot">Felizoide 2021</div>
         </div>

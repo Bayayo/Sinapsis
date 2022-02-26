@@ -13,7 +13,6 @@ export default function Main() {
 
     //const navigate = useNavigate();
     const tareasCollection = collection(db, "tareas");
-    const ref = doc(tareasCollection, "id");
     const LOCAL_STORAGE_KEY = 'SINOPSIS';
     const [usrTemp, setUsrTemp] = useState([]);
     const [tareas, setTareas] = useState([]);
@@ -25,6 +24,7 @@ export default function Main() {
     const [idx, setIdEdicion] = useState();
     const [idxTarea, setIdx] = useState();
 
+    /*MODELO PRINCIPAL*/
     const state = {
         usuario: usr,
         usr_id: usrId,
@@ -58,8 +58,7 @@ export default function Main() {
         let id = Number.parseInt(sslocalTemp[0].id, 10)
         setUsrId(id)
         /*SE BUSCA LAS TAREAS DEL USUARIO*/
-        state.data = [];
-        GetTareas(Object.values(sslocalTemp[0].id))
+        getTareas(Object.values(sslocalTemp[0].id))
         /* INICIA ANIMACIÓN*/
         const transicion = gsap.timeline();
         transicion.to(".container-main", { opacity: "1", duration: 1});
@@ -68,24 +67,24 @@ export default function Main() {
     
 
     /* BUSCA TAREAS EN BD*/
-    async function GetTareas(idUsr){
-        let id = Number.parseInt(idUsr, 10)
-        state.data = [];
+    async function getTareas(usrId){
+        /* SE VISUALIZAN LAS TAREAS DEL USUARIO*/
+        setTareas([]);
+        let id = Number.parseInt(usrId, 10)
         const q = query(collection(db, "tareas"), where("usr_id", "==", id));
         const querySnapshot = await getDocs(q);
-        querySnapshot.forEach((doc) => {
-           // setTareas([{ idx: doc.id }]);
-           //console.log(doc.id, " => ", doc.data());            
-        });
-        setTareas(querySnapshot.docs.map((doc) => ({ ...doc.data(), idx: doc.id })));
-        
-        //const data = await getDocs(usersCollectionRef);
-        //setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-
+        querySnapshot.docs.map((doc) =>
+            setTareas(oddars => { 
+                return [...oddars, { ...doc.data(), idx: doc.id }]
+            })
+        );
         state.visor.todos= true;
     }
 
+
     const addTarea = async () => {
+
+        /*SE CREA ID*/
         const initialId = state.usr_id.toString();
         const ultimoTra = (state.data.length).toString();
         const idUsr = initialId.padStart(3, "0");
@@ -93,7 +92,7 @@ export default function Main() {
 
         const time = new Date();
         const idx = 'WRK-' + idUsr + '-' + state.usuario.slice(0,4).toUpperCase() + '-' + trabajos  + '-' + time.getMilliseconds();
-
+        /* INSERTA NUEVA TAREA*/
         if(state.usr_id != null && state.tarea.titulo != null && state.tarea.descripcion != null){
             const nuevaTarea = doc(db, 'tareas', idx);
             await setDoc(nuevaTarea, state.tarea);
@@ -106,24 +105,20 @@ export default function Main() {
                 draggable: true,
                 progress: undefined,
                 });
-                GetTareas();
+                getTareas(idUsr);
                 setNuevo(false)
-                console.log(state)
+                //console.log(state)
         } else{
             console.log('falla: ' + idx)
             toast.error('😲 QUE RARO 😲!, no se insertó, hubo un error esperado pero inesperado. 😝' + idx, { position: "bottom-center", autoClose: 5000, hideProgressBar: false, closeOnClick: true, pauseOnHover: false, draggable: true, progress: undefined });
-            console.log(state)
+            //console.log(state)
             setNuevo(false)
-        }
-
-        
-
+        }  
     }
 
     const editTarea = async () => {
-        console.log(idx)
-        let cosa = JSON.stringify(edicion)
-        /*if(state.usr_id != null && edicion.titulo != null && edicion.descripcion != null){
+        /* SE ACTUALIZA TAREA CON EL IDX*/        
+        if(state.usr_id != null && edicion.titulo != null && edicion.descripcion != null){
             const q = doc(db, "tareas", idx);
             await updateDoc(q, edicion);
             toast.success('Se ha actualizado la tarea: '+ idx, {
@@ -135,18 +130,59 @@ export default function Main() {
                 draggable: true,
                 progress: undefined,
                 });
-            GetTareas();
             setEdita(false)
-
         }
         else{
             toast.error('😲 NO POS NO 😲!, Quien sabe por que pero no se actualizó. 😝 ID: ' + idx, { position: "bottom-center", autoClose: 5000, hideProgressBar: false, closeOnClick: true, pauseOnHover: false, draggable: true, progress: undefined });
             setEdita(false)
         }
-        */
-        
-        console.log("OK, se actualizo: -" +  cosa + "ID= " + idx)
-        
+        //console.log("OK, se actualizo: -" +  cosa + "ID= " + idx)
+    }
+
+    const eliminaTarea = async () => {
+        /* SE ACTUALIZA TAREA CON EL IDX*/        
+        if(state.usr_id != null && edicion.titulo != null && edicion.estatus !== 0){
+            const q = doc(db, "tareas", idx);
+            await deleteDoc(q);
+            toast.success('Dile adios a la tarea: (' +  edicion.id +  ') , IDX: ' + idx, {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+                });
+            getTareas(state.usr_id);
+            setEdita(false)
+        }
+        else{
+            toast.error('😲 QUE CARAJO 😲!, Porqué demonios no se eliminó, si le diste eliminar! 😝 ID: ' + idx, { position: "bottom-center", autoClose: 5000, hideProgressBar: false, closeOnClick: true, pauseOnHover: false, draggable: true, progress: undefined });
+            setEdita(false)
+        }
+    }
+
+    const finalizaTarea = async () => {
+         /* SE ACTUALIZA TAREA CON EL IDX*/        
+         if(state.usr_id != null && edicion.titulo != null && edicion.descripcion != null){
+            const q = doc(db, "tareas", idx);
+            await updateDoc(q, {estatus: 5});
+            toast.success('😍 MARAVILLOSO 😍! Se ha Finalizado la tarea: '+ idx, {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+                });
+            getTareas(state.usr_id);
+            setEdita(false)
+        }
+        else{
+            toast.error('😲 JA 😲!, NO PUEDES ACABAR ESTA TAREA. 😝 ID: ' + idx, { position: "bottom-center", autoClose: 5000, hideProgressBar: false, closeOnClick: true, pauseOnHover: false, draggable: true, progress: undefined });
+            setEdita(false)
+        }
     }
 
     const verHistorial = (b) => {
@@ -172,7 +208,7 @@ export default function Main() {
         <>
             <Header/>
             <div className="container-main">
-                <Tab model={state} addTarea={addTarea} editTarea={editTarea} edicion={edicion} verHistorial={verHistorial} setNuevo={setNuevo} setEdita={setEdita}/>
+                <Tab model={state} addTarea={addTarea} editTarea={editTarea} eliminaTarea={eliminaTarea} finalizaTarea={finalizaTarea} edicion={edicion} verHistorial={verHistorial} setNuevo={setNuevo} setEdita={setEdita}/>
                 <Container tareas={state.data} model={state} setEdita={setEdita} setEdicion={setEdicion} setIdEdicion={setIdEdicion} playAll={playAll} pauseAll={pauseAll} quitAll={quitAll}/>
             </div>
             <ToastContainer />

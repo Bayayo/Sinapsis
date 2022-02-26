@@ -1,55 +1,8 @@
 import React, { useEffect, useState, useRef }  from 'react';
+import Countdown from 'react-countdown';
 
 
-export default function Modal({c1, c2, model, addTarea, editTarea, edicion }) {
-
-  const calculateTimeLeft = () => {
-    let year = new Date().getFullYear();
-    let timeLeft = {};
-    const difference = +new Date(`${year}-9-1`) - +new Date();
-
-    if (difference > 0) {
-      timeLeft = {
-        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-        minutes: Math.floor((difference / 1000 / 60) % 60),
-        seconds: Math.floor((difference / 1000) % 60),
-      };
-    }
-
-    return timeLeft;
-  };
-
-  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
-  const [year] = useState(new Date().getFullYear()); 
-  
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setTimeLeft(calculateTimeLeft());
-    }, 1000);
-  
-    return () => clearTimeout(timer);
-  });
-
-  const timerComponents = [];
-
-  Object.keys(timeLeft).forEach((interval) => {
-    if (!timeLeft[interval]) {
-      return;
-    }
-  
-    timerComponents.push(
-      <span key={interval}>
-        {timeLeft[interval]} {interval}{" "}
-      </span>
-    );
-  });
-
-
-    const doClean = () => {
-
-    }
+export default function Modal({c1, c2, model, addTarea, editTarea, eliminaTarea, finalizaTarea, edicion }) {
 
     const inputTitulo = useRef();
     const inputDescrip = useRef();
@@ -120,14 +73,13 @@ export default function Modal({c1, c2, model, addTarea, editTarea, edicion }) {
                         <div className='cnt-m-ms'>
                           <label> Plantillas </label>
                           <div>
-                            <button id="1" name="a_" className='bt_plantillas'>1 Día</button>
-                            <button id="2" name="a_" className='bt_plantillas'>1 Hora</button>
-                            <button id="3" name="a_" className='bt_plantillas'>45 Minutos</button>
-                            <button id="4" name="a_" className='bt_plantillas'>30 Minutos</button>
-                            <button id="5" name="a_" className='bt_plantillas'>15 Minutos</button>
+                            <button id="1" className='bt_plantillas'>1 Día</button>
+                            <button id="2" className='bt_plantillas'>1 Hora</button>
+                            <button id="3" className='bt_plantillas'>45 Minutos</button>
+                            <button id="4" className='bt_plantillas'>30 Minutos</button>
+                            <button id="5" className='bt_plantillas'>15 Minutos</button>
                           </div>
                         </div>
-                          <div>{timerComponents.length ? timerComponents : <span>Time's up!</span>}</div>
                       </div>                    
                     </form>
                     
@@ -177,20 +129,14 @@ export default function Modal({c1, c2, model, addTarea, editTarea, edicion }) {
                       </div>
                   </div>
                   <div className='cnt-m-ms'>
-                    <label> Plantillas </label>
-                    <div>
-                      <button id="" name="" className='bt_plantillas'>1 Día</button>
-                      <button id="" name="" className='bt_plantillas'>1 Hora</button>
-                      <button id="" name="" className='bt_plantillas'>45 Minutos</button>
-                      <button id="" name="" className='bt_plantillas'>30 Minutos</button>
-                      <button id="" name="" className='bt_plantillas'>15 Minutos</button>
-                    </div>
+                    <Countdown date={Date.now() + model.tiempo} />
                   </div>
-                    <div>{timerComponents.length ? timerComponents : <span>Time's up!</span>}</div>
                 </div>                    
               </form>
               
               <div className="btns-modal"> 
+                  <button onClick={() => eliminaTarea()} className="btn_add u_line">eliminar</button>
+                  <button onClick={() => finalizaTarea()} className="btn_add u_line">finalizar</button>
                   <button onClick={() => c2(false)} className="btn_add u_line">cancelar</button>
                   <button onClick={editTarea} className="btn_add add_cls" >Actualizar</button>
               </div>
