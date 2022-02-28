@@ -23,6 +23,9 @@ export default function Main() {
     const [edicion, setEdicion] = useState();
     const [idx, setIdEdicion] = useState();
     const [idxTarea, setIdx] = useState();
+    const [verTodo, setVerTodo] = useState(false);
+    const [verFinal, setVerFinal] = useState(false);
+    const [verEliminados, setVerEliminados] = useState(false);
 
     /*MODELO PRINCIPAL*/
     const state = {
@@ -34,7 +37,11 @@ export default function Main() {
         modalEdita: edita,
         modalHistorico: false,
         modalGraficas: false,
-        visor: { todos:true, finalizados:false},
+        visor: { 
+            todos:verTodo, 
+            finalizados:verFinal,
+            eliminados: verEliminados
+        },
         tarea: {
             usr_id: null,
             usuario: null,
@@ -78,7 +85,8 @@ export default function Main() {
                 return [...oddars, { ...doc.data(), idx: doc.id }]
             })
         );
-        state.visor.todos= true;
+        setVerFinal(false)
+        setVerTodo(true);
     }
 
 
@@ -185,8 +193,22 @@ export default function Main() {
         }
     }
 
-    const verHistorial = (b) => {
-        console.log('Historial: ' + b)
+    const verTodos = () => {
+        setVerTodo(true)
+        setVerFinal(false)
+        setVerEliminados(false)
+    }
+
+    const verHistorial = () => {
+        setVerTodo(false)
+        setVerFinal(true)
+        setVerEliminados(false)
+    }
+
+    const verEliminadosList = () => {
+        setVerEliminados(true)
+        setVerTodo(false)
+        setVerFinal(false)
     }
 
     const playAll = (c) => {
@@ -208,8 +230,8 @@ export default function Main() {
         <>
             <Header/>
             <div className="container-main">
-                <Tab model={state} addTarea={addTarea} editTarea={editTarea} eliminaTarea={eliminaTarea} finalizaTarea={finalizaTarea} edicion={edicion} verHistorial={verHistorial} setNuevo={setNuevo} setEdita={setEdita}/>
-                <Container tareas={state.data} model={state} setEdita={setEdita} setEdicion={setEdicion} setIdEdicion={setIdEdicion} playAll={playAll} pauseAll={pauseAll} quitAll={quitAll}/>
+                <Tab model={state} addTarea={addTarea} editTarea={editTarea} eliminaTarea={eliminaTarea} finalizaTarea={finalizaTarea} edicion={edicion} verTodos={verTodos} verHistorial={verHistorial} setNuevo={setNuevo} setEdita={setEdita} verEliminadosList={verEliminadosList}/>
+                <Container tareas={state.data} model={state} setEdita={setEdita} setEdicion={setEdicion} setIdEdicion={setIdEdicion} playAll={playAll} pauseAll={pauseAll} quitAll={quitAll} finalizaTarea={finalizaTarea}/>
             </div>
             <ToastContainer />
 

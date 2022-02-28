@@ -387,19 +387,82 @@ header{
 
 .task-main{
     width: 230px;
-    height: 160px;
+    height: 139px;
     background-color: white;
     box-shadow: -2px 3px 4px #ccc;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: stretch;
     margin-right: 20px;
     padding: 5px;
     margin-bottom: 20px;
     cursor: pointer;
+    overflow: hidden;
+    position: relative;
+}
+
+.task-tit{
+    font-size: 1.4em;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #2196f3;
+    margin-top: 5px;
+    margin-right: 10px;
+    overflow: hidden;
+    max-height: 55px;
+}
+
+.task-fin{
+    right: 0;
+    top: -2px;
+    font-size: 1.4em;
+    color: #4caf50;
+    justify-content: space-evenly;
+    flex-direction: row-reverse;
+    align-items: center;
+    position: absolute;
+
+}
+
+.task-elim{
+    right: 0;
+    top: -2px;
+    font-size: 1.4em;
+    color: #636363;
+    justify-content: space-evenly;
+    flex-direction: row-reverse;
+    align-items: center;
+    position: absolute;
+
+}
+
+.task-do{
+    flex: auto;
+    font-size: 1.1em;
+    text-transform: initial;
+    overflow: hidden;
+}
+
+.task-date{
+    font-size: 2.0em;
+    font-weight: bold;
+    color: #607d8b;
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-end;
+    align-content: space-between;
+}
+
+.tsk-normal{
+    color: #00bcd4!important;
+}
+
+.tsk-rojo{
+    color: #f44336!important;
 }
 
 .foot{
@@ -484,7 +547,6 @@ header{
     align-items: flex-start;
     align-content: flex-start;
     flex-wrap: wrap;
-    width: 80vw;
     height: 70vh;
     overflow: auto;
 
@@ -582,8 +644,14 @@ header{
     align-items: center;
     height: 60px;
     width: 99%;
+    position: relative;
 }
 
+.ico-l{
+    margin-right: 7px;
+    font-size: 1.2em;
+
+}
 
 .cnt-m-all > div{
     margin-bottom: 15px;
@@ -639,6 +707,13 @@ header{
 
 .u_line{
     text-decoration-line: underline;
+}
+
+.destroy_btn{
+    padding-left: 30px;
+    color: red;
+    position: absolute;
+    left: 0;
 }
 
 .clock-container {

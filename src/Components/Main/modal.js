@@ -92,7 +92,7 @@ export default function Modal({c1, c2, model, addTarea, editTarea, eliminaTarea,
 
        }
 
-      { model.modalEdita &&
+      { (model.modalEdita && model.tarea.estatus !== 9 ) &&
 
       <div className='modal'>
         <div className="bkg-modal" onClick={() => c2(false)}></div>
@@ -135,7 +135,7 @@ export default function Modal({c1, c2, model, addTarea, editTarea, eliminaTarea,
               </form>
               
               <div className="btns-modal"> 
-                  <button onClick={() => eliminaTarea()} className="btn_add u_line">eliminar</button>
+                  <button onClick={() => eliminaTarea()} className="btn_add u_line destroy_btn"><i className="fas fa-shredder ico-l"></i> destruir</button>
                   <button onClick={() => finalizaTarea()} className="btn_add u_line">finalizar</button>
                   <button onClick={() => c2(false)} className="btn_add u_line">cancelar</button>
                   <button onClick={editTarea} className="btn_add add_cls" >Actualizar</button>
@@ -143,6 +143,37 @@ export default function Modal({c1, c2, model, addTarea, editTarea, eliminaTarea,
           </div>
       </div>
       
+      }
+
+      { (model.modalEdita && model.tarea.estatus === 9 ) &&
+
+      <div className='modal'>
+        <div className="bkg-modal" onClick={() => c2(false)}></div>
+          <div className="main-modal">
+              <div className="header-modal">
+                  <div className="tit-modal">ELIMINADO</div>
+                  <button onClick={() => c2(false)} className="close-modal"><i className="fas fa-times"></i></button>
+              </div>
+              <form className="cont-modal"> 
+                <div className='cnt-m-all'>
+                  <div className='cnt-m-ms'>
+                    <label> Tareas <span>*</span></label>
+                    <input type="text"  name="titulo" defaultValue={edicion.titulo} onChange={handleChange2} ref={changeTitulo}/>
+                  </div>
+                  <div className='cnt-m-ms'>
+                    <label> Descripción <span>*</span></label>
+                    <textarea  name="descripcion" onChange={handleChange2} defaultValue={edicion.descripcion} ref={changeDescrip} rows="5"></textarea>
+                  </div>
+                </div>                    
+              </form>
+              
+              <div className="btns-modal"> 
+                  <button onClick={() => eliminaTarea()} className="btn_add u_line destroy_btn"><i className="fas fa-shredder ico-l"></i> destruir</button>
+                  
+              </div>
+          </div>
+      </div>
+
       }
 
       

@@ -2,7 +2,7 @@ import React, { useEffect, Fragment } from 'react';
 import Taskdo from './taskdo';
 import gsap from 'gsap';
 
-export default function Container({tareas, model, setEdicion, setIdEdicion, setEdita, playAll, pauseAll, quitAll}) {
+export default function Container({tareas, model, setEdicion, setIdEdicion, setEdita, playAll, pauseAll, quitAll , finalizaTarea}) {
 
     //console.log(tareas)
     console.log(model)
@@ -41,15 +41,24 @@ export default function Container({tareas, model, setEdicion, setIdEdicion, setE
                             model.visor.todos &&
 
                             tareas.map( (data, index) => {
-                                 return <Taskdo key={index}  id={data.id} edit={() => openTarea(true, data, data.idx)} model={data} /> 
+                                 return <Taskdo key={index}  id={data.id} edit={() => openTarea(true, data, data.idx)} model={data} finalizaTarea={finalizaTarea} /> 
                             })
                             
                         }
                         {
                             model.visor.finalizados &&
                             
-                            tareas.filter(tarea => tarea.estatus(0)).map( (data, index) => (
-                                    <Taskdo key={index}  id={data.id} edit={() => openTarea(true, data, data.idx)} model={data}/>
+                            tareas.filter(tarea => tarea.estatus === 5).map( (data, index) => (
+                                    <Taskdo key={index}  id={data.id} edit={() => openTarea(true, data, data.idx)} model={data} finalizaTarea={finalizaTarea}/>
+                                )
+                            )
+                            
+                        }
+                        {
+                            model.visor.eliminados &&
+                            
+                            tareas.filter(tarea => tarea.estatus === 9).map( (data, index) => (
+                                    <Taskdo key={index}  id={data.id} edit={() => openTarea(true, data, data.idx)} model={data} finalizaTarea={finalizaTarea}/>
                                 )
                             )
                             

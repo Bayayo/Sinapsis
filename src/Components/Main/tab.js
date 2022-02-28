@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Modal from './modal';
 
-export default function Tab( { model, addTarea, editTarea, eliminaTarea, finalizaTarea, edicion, verHistorial, setNuevo, setEdita}) {
+export default function Tab( { model, addTarea, editTarea, eliminaTarea, finalizaTarea, edicion, verTodos, verHistorial, setNuevo, setEdita, verEliminadosList}) {
     //NUEVA
     //const [m1, c1] = useState(false);
     //EDITA
@@ -31,7 +31,9 @@ export default function Tab( { model, addTarea, editTarea, eliminaTarea, finaliz
 
             <div className="btns-main">
                 <button className="btn-ms" onClick={() => c1(true)}><i className="fas fa-plus-circle"></i> AGREGAR</button>
-                <button className="btn-ms" onClick={verHistorial}><i className="fas fa-folder"></i>HISTORICO</button>
+                <button className="btn-ms" onClick={verTodos}><i class="fad fa-th-list"></i>TODO</button>
+                <button className="btn-ms" onClick={verHistorial}><i className="fas fa-folder"></i>LISTOS</button>
+                <button className="btn-ms" onClick={verEliminadosList}><i class="fas fa-calendar-times"></i>ELIMINADOS</button>
                 
             </div>
 
