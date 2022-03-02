@@ -1,8 +1,8 @@
-import React, { useEffect, useState, useRef }  from 'react';
-import Countdown from 'react-countdown';
+import React, { useEffect, useState, useRef, Component }  from 'react';
+import Countdown, { CountdownApi }  from 'react-countdown';
 
 
-export default function Modal({c1, c2, model, addTarea, editTarea, eliminaTarea, finalizaTarea, edicion }) {
+export default function Modal({c1, c2, model, addTarea, editTarea, eliminaTarea, finalizaTarea, setTiempo, edicion, initTarea, pauseTarea }) {
 
     const inputTitulo = useRef();
     const inputDescrip = useRef();
@@ -10,7 +10,17 @@ export default function Modal({c1, c2, model, addTarea, editTarea, eliminaTarea,
     const changeTitulo = useRef();
     const changeDescrip = useRef();
 
+    let okTimer = useRef();
+
+    let valida = true;
+
+    //let countdownApi: CountdownApi; 
+
+    const [active, setActv] = useState(false);
+
     const handleChange = () => {
+ 
+
       model.tarea.titulo = inputTitulo.current.value;
       model.tarea.descripcion = inputDescrip.current.value;
       model.tarea.usuario = model.usuario;
@@ -31,6 +41,10 @@ export default function Modal({c1, c2, model, addTarea, editTarea, eliminaTarea,
       console.log(model)
     };
 
+    const handleClick = () => {
+      setActv(true)
+    }
+
 
     return (
        <>
@@ -43,7 +57,7 @@ export default function Modal({c1, c2, model, addTarea, editTarea, eliminaTarea,
                         <div className="tit-modal">Nueva Tarea</div>
                         <button onClick={() => c1(false)} className="close-modal"><i className="fas fa-times"></i></button>
                     </div>
-                    <form className="cont-modal"> 
+                    <div className="cont-modal"> 
                       <div className='cnt-m-all'>
                         <div className='cnt-m-ms'>
                           <label> Titulo <span>*</span></label>
@@ -56,36 +70,25 @@ export default function Modal({c1, c2, model, addTarea, editTarea, eliminaTarea,
                         <div className='cnt-m-ms'>
                           <label> Tiempo <span>*</span></label>
                             <div className="clock-container">
-                              <div className="clock-col">
-                                <input type="number" min="0" max="99" className="clock-timer"/>
-                                <p className="clock-label"> Días </p>
-                              </div>
-                              <div className="clock-col">
-                                <input type="number" min="0" max="99" className="clock-timer"/>
-                                <p className="clock-label"> Horas </p>
-                              </div>
-                              <div className="clock-col">
-                                <input type="number" min="1" max="99" className="clock-timer"/>
-                                <p className="clock-label">Minutos</p>
-                              </div>
+                              <Countdown  autoStart={false} className="tiempo-modal" date={Date.now() + model.tarea.tiempo} />
+                              <div className='objs-elems txt-mins'> <div>HORAS</div> <div>MINUTOS</div>  <div>SEGUNDOS</div> </div>
                             </div>
                         </div>
                         <div className='cnt-m-ms'>
                           <label> Plantillas </label>
                           <div>
-                            <button id="1" className='bt_plantillas'>1 Día</button>
-                            <button id="2" className='bt_plantillas'>1 Hora</button>
-                            <button id="3" className='bt_plantillas'>45 Minutos</button>
-                            <button id="4" className='bt_plantillas'>30 Minutos</button>
-                            <button id="5" className='bt_plantillas'>15 Minutos</button>
+                            <button onClick={() => setTiempo(3600000)} id="2" className='bt_plantillas'>1 Hora</button>
+                            <button onClick={() => setTiempo(2700000)} id="3" className='bt_plantillas'>45 Minutos</button>
+                            <button onClick={() => setTiempo(1800000)} id="4" className='bt_plantillas'>30 Minutos</button>
+                            <button onClick={() => setTiempo(120000)} id="4" className='bt_plantillas'>2 Minutos</button>
                           </div>
                         </div>
                       </div>                    
-                    </form>
+                    </div>
                     
                     <div className="btns-modal"> 
                         <button onClick={() => c1(false)} className="btn_add u_line">cancelar</button>
-                        <button onClick={addTarea} className="btn_add add_cls" >Añadir</button>
+                        <button onClick={addTarea} className="btn_add add_cls" disabled={!valida}>Añadir</button>
                     </div>
                 </div>
             </div>
@@ -101,7 +104,7 @@ export default function Modal({c1, c2, model, addTarea, editTarea, eliminaTarea,
                   <div className="tit-modal">EDITAR</div>
                   <button onClick={() => c2(false)} className="close-modal"><i className="fas fa-times"></i></button>
               </div>
-              <form className="cont-modal"> 
+              <div className="cont-modal"> 
                 <div className='cnt-m-all'>
                   <div className='cnt-m-ms'>
                     <label> Tareas <span>*</span></label>
@@ -112,27 +115,22 @@ export default function Modal({c1, c2, model, addTarea, editTarea, eliminaTarea,
                     <textarea  name="descripcion" onChange={handleChange2} defaultValue={edicion.descripcion} ref={changeDescrip} rows="5"></textarea>
                   </div>
                   <div className='cnt-m-ms'>
-                    <label> Tiempo <span>*</span></label>
-                      <div className="clock-container">
-                        <div className="clock-col">
-                          <input type="number" min="0" max="99" className="clock-timer"/>
-                          <p className="clock-label"> Días </p>
-                        </div>
-                        <div className="clock-col">
-                          <input type="number" min="0" max="99" className="clock-timer"/>
-                          <p className="clock-label"> Horas </p>
-                        </div>
-                        <div className="clock-col">
-                          <input type="number" min="1" max="99" className="clock-timer"/>
-                          <p className="clock-label">Minutos</p>
-                        </div>
-                      </div>
+                          <label> Tiempo <span>*</span></label>
+                            <div className="clock-container">
+                              <Countdown onPause={active} className="tiempo-modal" date={Date.now() + edicion.tiempo} />
+                              <div className='objs-elems txt-mins'> <div>HORAS</div> <div>MINUTOS</div>  <div>SEGUNDOS</div> </div>
+                            </div>
                   </div>
                   <div className='cnt-m-ms'>
-                    <Countdown date={Date.now() + model.tiempo} />
-                  </div>
+                          <label> Plantillas </label>
+                          <div>
+                            <button id="2" className='bt_plantillas' disabled={edicion.estatus === 2 || edicion.estatus === 5 || edicion.estatus === 9}><i class="fas fa-play"></i> INICIAR</button>
+                            <button onClick={() => handleClick} id="3" className='bt_plantillas'> <i class="fas fa-pause"></i> PAUSAR</button>
+                            <button onClick={setTiempo(edicion.tiempo_inicial)} id="4" className='bt_plantillas'>REINICIAR</button>
+                          </div>
+                        </div>
                 </div>                    
-              </form>
+              </div>
               
               <div className="btns-modal"> 
                   <button onClick={() => eliminaTarea()} className="btn_add u_line destroy_btn"><i className="fas fa-shredder ico-l"></i> destruir</button>

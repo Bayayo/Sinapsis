@@ -1,7 +1,7 @@
 import React from 'react'
 import Countdown from 'react-countdown';
 
-export default function Taskdo({model, edit, finalizaTarea }) {
+export default function Taskdo({model, edit, finalizaTarea, refCallback, okClick }) {
     
 
     return (
@@ -18,17 +18,17 @@ export default function Taskdo({model, edit, finalizaTarea }) {
           <section className="task-do">{model.descripcion}</section>
           {
             (model.tiempo > 60000) &&
-            <Countdown autoStart={false} onComplete={finalizaTarea} className='task-date tsk-normal' date={Date.now() + model.tiempo} />
+            <Countdown ref={refCallback}  autoStart={false} onComplete={finalizaTarea} className='task-date tsk-normal' date={Date.now() + model.tiempo} />
 
           }
           {
             (model.tiempo < 60000 && model.estatus !== 5) &&
-            <Countdown autoStart={false} onComplete={finalizaTarea} className='task-date tsk-rojo' date={Date.now() + model.tiempo} />
+            <Countdown ref={refCallback}  autoStart={false} onComplete={finalizaTarea} className='task-date tsk-rojo' date={Date.now() + model.tiempo} />
 
           }
           {
             (model.tiempo === 0 && model.estatus === 5) &&
-            <Countdown autoStart={false} onComplete={finalizaTarea} className='task-date' date={Date.now() + model.tiempo} />
+            <Countdown ref={refCallback}  autoStart={false} onComplete={finalizaTarea} className='task-date' date={Date.now() + model.tiempo} />
 
           }
         </div>

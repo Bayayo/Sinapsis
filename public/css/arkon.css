@@ -237,6 +237,25 @@ td input[data-value*="default"] {
     margin-left: 20px;
 }
 
+.btn_add_tab{
+    margin-bottom: 15px;
+    background-color: #00d495 !important;
+    padding: 4% !important;
+    color: white !important;
+}
+
+.m-r{
+    margin-right: 6px;
+}
+
+.txt-mins{
+    flex: auto;
+    align-items: flex-end;
+    color: white;
+    margin: 0 !important;
+    padding: 0 25% !important;
+}
+
 .iso-form {
     width: 120px;
     height: 100px;
@@ -653,6 +672,20 @@ header{
 
 }
 
+.tiempo-modal{
+    position: absolute;
+    color: white;
+    font-size: 8em;
+    overflow: hidden;
+    width: 330px;
+    top: -20px;
+    display: flex;
+    flex: auto;
+    text-align: right;
+    white-space: nowrap;
+    justify-content: flex-end;
+}
+
 .cnt-m-all > div{
     margin-bottom: 15px;
     display: grid;
@@ -725,7 +758,10 @@ header{
     display: flex;
     width: 39.2vw;
     justify-content: space-around;
+    position: relative;
+    height: 85px;
 }
+
 .clock-container > div {
     text-align: center;
     position: relative;

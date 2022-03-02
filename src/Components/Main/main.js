@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, Fragment } from 'react';
 import {collection,getDocs, setDoc, addDoc,updateDoc,deleteDoc,doc,where, query} from "firebase/firestore";
 //import { useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
@@ -25,7 +25,11 @@ export default function Main() {
     const [idxTarea, setIdx] = useState();
     const [verTodo, setVerTodo] = useState(false);
     const [verFinal, setVerFinal] = useState(false);
+    const [verCurso, setVerCurrso] = useState(false);
     const [verEliminados, setVerEliminados] = useState(false);
+    const [okClick, setClick] = useState(false);
+    const [tiempo, setTiempo] = useState(120000);
+    const refCallback = useRef();
 
     /*MODELO PRINCIPAL*/
     const state = {
@@ -38,20 +42,24 @@ export default function Main() {
         modalHistorico: false,
         modalGraficas: false,
         visor: { 
+            curso:verCurso, 
             todos:verTodo, 
             finalizados:verFinal,
-            eliminados: verEliminados
+            eliminados: verEliminados,
+            graficas: false
         },
         tarea: {
-            usr_id: null,
-            usuario: null,
-            titulo: null,
-            descripcion: null,
-            tiempo: null,
-            estatus: null,
-            fecha: null,
-            id: null,
-            idx: null
+            usr_id: usrId,
+            usuario: usr,
+            titulo: '',
+            descripcion: '',
+            tiempo: tiempo,
+            tiempo_inicial: tiempo,
+            estatus: 0,
+            fecha_inicial: Date.now(),
+            fecha_final: '',
+            id: 0,
+            idx: ''
         },
       };
   
@@ -86,7 +94,8 @@ export default function Main() {
             })
         );
         setVerFinal(false)
-        setVerTodo(true);
+        setVerTodo(false);
+        setVerCurrso(true);
     }
 
 
@@ -192,23 +201,31 @@ export default function Main() {
             setEdita(false)
         }
     }
-
-    const verTodos = () => {
-        setVerTodo(true)
-        setVerFinal(false)
-        setVerEliminados(false)
+    /* INICIA LAS TAREAS CON EL ESTATUS: 2*/ 
+    const initTarea = async () => {
+        if(state.usr_id != null && edicion.titulo != null && edicion.descripcion != null){
+            const q = doc(db, "tareas", idx);
+            await updateDoc(q, {estatus: 2});
+            toast.success('😍 OK 😍! Manos a la obra!, : '+ idx, {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+                });
+            getTareas(state.usr_id);
+            setEdita(false)
+        }
+        else{
+            toast.error('😲 JA 😲!, NO PUEDES INICIAR ESTA TAREA. 😝 ID: ' + idx, { position: "bottom-center", autoClose: 5000, hideProgressBar: false, closeOnClick: true, pauseOnHover: false, draggable: true, progress: undefined });
+            setEdita(false)
+        }
     }
 
-    const verHistorial = () => {
-        setVerTodo(false)
-        setVerFinal(true)
-        setVerEliminados(false)
-    }
+    const pauseTarea = () => {
 
-    const verEliminadosList = () => {
-        setVerEliminados(true)
-        setVerTodo(false)
-        setVerFinal(false)
     }
 
     const playAll = (c) => {
@@ -221,20 +238,54 @@ export default function Main() {
 
     const quitAll = (e) => {
         console.log('Quitar' + e)
+        refCallback.pause()
+    }
+
+    /* SWITCHES PARA VER LOS MENUS CON LA INFO*/
+    /* LAS TAREAS EN CURSO SON DEL ESTATUS:2 */
+    const verEnCurso = () => {
+        setVerCurrso(true);
+        setVerTodo(false)
+        setVerFinal(false)
+        setVerEliminados(false)
+    }
+    /* VISUALIZA TODO */
+    const verTodos = () => {
+        setVerCurrso(false);
+        setVerTodo(true)
+        setVerFinal(false)
+        setVerEliminados(false)
+    }
+    /* VISUALIZA CON EL ESTATUS:5 o FINALIZADOS */
+    const verHistorial = () => {
+        setVerCurrso(false);
+        setVerTodo(false)
+        setVerFinal(true)
+        setVerEliminados(false)
+    }
+    /* VISUALIZA CON EL ESTATUS:9 */
+    const verEliminadosList = () => {
+        setVerCurrso(false);
+        setVerTodo(false)
+        setVerFinal(false)
+        setVerEliminados(true)
+    }
+    const clock = () => {
+        
     }
 
     
 
-
+    /* CONTENEDOR DE TODA LA INFORMACIÓN*/
     return (
-        <>
+        <Fragment>
             <Header/>
             <div className="container-main">
-                <Tab model={state} addTarea={addTarea} editTarea={editTarea} eliminaTarea={eliminaTarea} finalizaTarea={finalizaTarea} edicion={edicion} verTodos={verTodos} verHistorial={verHistorial} setNuevo={setNuevo} setEdita={setEdita} verEliminadosList={verEliminadosList}/>
-                <Container tareas={state.data} model={state} setEdita={setEdita} setEdicion={setEdicion} setIdEdicion={setIdEdicion} playAll={playAll} pauseAll={pauseAll} quitAll={quitAll} finalizaTarea={finalizaTarea}/>
+                <Tab model={state} addTarea={addTarea} editTarea={editTarea} eliminaTarea={eliminaTarea} finalizaTarea={finalizaTarea} edicion={edicion} verTodos={verTodos} verHistorial={verHistorial} setNuevo={setNuevo} setEdita={setEdita} verEliminadosList={verEliminadosList} verCurso={verEnCurso} setTiempo={setTiempo} initTarea={initTarea} pauseTarea={pauseTarea}  okClick={okClick}/>
+                <Container tareas={state.data} model={state} setEdita={setEdita} setEdicion={setEdicion} setIdEdicion={setIdEdicion} playAll={playAll} pauseAll={pauseAll} quitAll={quitAll} finalizaTarea={finalizaTarea} refCallback={refCallback} okClick={okClick}/>
             </div>
             <ToastContainer />
 
-        </>
+        </Fragment>
     )
 }
